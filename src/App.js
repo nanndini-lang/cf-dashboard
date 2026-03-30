@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 const SHEET_ID = "1K1jT-TGiEFsSMyo6M_ORD0vQQiyFfG4-HeIxs3Fq6VM";
@@ -13,8 +12,10 @@ const TABS = {
 
 const fetchSheet = async (tabName) => {
   const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${encodeURIComponent(tabName)}?key=${API_KEY}`;
+  console.log("Fetching:", tabName, "| API Key present:", !!API_KEY);
   const res = await fetch(url);
   const data = await res.json();
+  console.log("Response for", tabName, ":", data.error || `${(data.values || []).length} rows`);
   if (!data.values) return [];
   const [headers, ...rows] = data.values;
   return rows.map(row => {
