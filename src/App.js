@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 const SHEET_ID = "1K1jT-TGiEFsSMyo6M_ORD0vQQiyFfG4-HeIxs3Fq6VM";
-const API_KEY = "YOUR_API_KEY_HERE";
+const API_KEY = typeof process !== 'undefined' ? process.env.REACT_APP_API_KEY : "";
 
 const TABS = {
   employees: "Employee Information",
